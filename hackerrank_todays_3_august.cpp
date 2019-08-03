@@ -6,7 +6,9 @@
 - [easy][bit-man][flipping_bits](https://www.hackerrank.com/challenges/flipping-bits/problem)
 - [medium][bit][count_no_with_greater_xor](https://www.hackerrank.com/challenges/the-great-xor/problem)
 - [easy][bit-manipulation][and_product_of_range](https://www.hackerrank.com/challenges/and-product/problem)
-= [hard][bit-manipulation][what_next](https://www.hackerrank.com/challenges/whats-next/problem)
+- [hard][bit-manipulation][what_next](https://www.hackerrank.com/challenges/whats-next/problem)
+- [easy][stair_case_pattern](https://www.hackerrank.com/challenges/staircase/problem)
+- [easy][basic-c][plus_minus](https://www.hackerrank.com/challenges/plus-minus/problem)
 */
 
 
@@ -168,7 +170,34 @@ void whatsNext(vector<int> arr) {
 // ===================================================
 // ===================================================
 
+void staircase(int n) {
+    string s = " ";
+    for(int i=0; i<n; i++){
+        for(int j=0; j<6-i-1; j++){
+            cout<<string(6-i-1,' ');
+        }
+        for(int j=0; j<i+1; j++){
+            cout<<"#";
+        }
+        cout<<endl;
+    }
+}
 
+void staircase(int n){
+    for(int i=0; i<n; i++){
+		cout<<string(n-i-1,' ');
+        cout<<string(i+1,'#');
+        cout<<endl;
+    }
+}
+
+void staircase(int n) {
+    for (int i = 1; i <= n; i++){
+         string s(n-i, ' ');
+         string p(i,'#');
+         cout << s << p << endl;
+    }
+}
 
 
 
@@ -181,13 +210,27 @@ void whatsNext(vector<int> arr) {
 // ===================================================
 
 
-
-
-
-
-
-
-
+// Complete the plusMinus function below.
+void plusMinus(vector<int> arr) {
+    double zero = 0, pos = 0, neg = 0;
+    int n = arr.size();
+    for(int i=0; i<n; i++){
+        if(arr[i] > 0) pos++;
+        else if(arr[i] < 0) neg++;
+        else zero++;
+    }
+    // cout<<pos<<" "<<neg<<" "<<zero<<endl;
+    double posf = pos / n*1.0;
+    double negf = neg / n*1.0;
+    double zerof = zero / n*1.0;
+    printf("%.6f\n", posf);
+    printf("%.6f\n", negf);
+    printf("%.6f\n", zerof);
+    // cout << setprecision(6) << posf << '\n';
+    // cout << setprecision(6) << negf << '\n';
+    // cout << setprecision(6) << zerof << '\n';
+    // cout<<posf<<" "<<negf<<" "<<zerof<<endl;
+}
 
 
 // ===================================================
@@ -386,9 +429,4 @@ void aOrB(int k, string a, string b, string c) {
     // }
     
 }
-
-// ===================================================
-// ===================================================
-// ===================================================
-
 
