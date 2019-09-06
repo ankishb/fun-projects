@@ -21,28 +21,8 @@ Ref: https://github.com/giraffeacademy/
      minimalist syntax which is largly based on white space, and designed to be
      clean and readable.
 
-     When first getting into python it can be a bit confusing becasue unlike many
-     other programming languages Python has two major, non-compatible versions that
-     are currently widely used.
-
-     Python version 2.7.2, released in 2007, is the last iteration of verison 2
-     that was released. This verison is for the most part, backwards compatiable
-     with all previous versions.
-
      In 2008, the Founder, Guido van Rossum decided to clean up the Python codebase and overhall
      a lot of the things in Python 2 that he didn't like, thus creating Python 3.
-
-     Python 3 was adopted slowly at first, mainly because it is not backwards compatible with
-     Python 2, and there was a huge eco-system of package libraries written for
-     Python 2 which now would not work in python 3.
-
-     But now-a-day's the Python 3 ecosystem has for the most part caught up, making
-     Python 3 the obvious choice for new developers looking to learn the language.
-     Python 3 is also the version that will be taught in this tutorial.
-
-     Many developers choose to write Python using a specilized integrated
-     development enviornment. Three of the most popular are Eclipse,
-     PyCharm and Netbeans.
 '''
 
 
@@ -303,21 +283,33 @@ for index in range(5):
 
 # E X C E P T I O N    C A T C H I N G
 
-# answer = 10 / int(input("Enter Number: "))
+answer = 10 / int(input("Enter Number: "))
 
-# try:
-#     answer = 10 / int(input("Enter Number: "))
-# except:
-#     print("Error")
+try:
+    answer = 10 / int(input("Enter Number: "))
+except:
+    print("Error")
 
-# try:
-#     answer = 10 / int(input("Enter Number: "))
-# except ZeroDivisionError as e:
-#     print(e)
-# except:
-#     print("Caught any exception")       # Big no-no
+try:
+    answer = 10 / int(input("Enter Number: "))
+except ZeroDivisionError as e:
+    print(e)
+except:
+    print("Caught any exception")       # Big no-no
 
 
+
+
+try:
+    answer = 10 / int(input("Enter Number: ")) # do this opeartion
+except:
+    print("something went wring")
+else:
+    print("if error occured, run this block")
+finally:
+  print("Always runs, whether error occured or not")
+# finally is helpful to verify the operation. 
+# For exp: if error occured during file read, then close the file, if it is still opened.
 
 
 
@@ -416,8 +408,3 @@ myChef.make_chicken()
 myItalianChef = ItalianChef("Massimo Bottura", 55, "Italy")
 myItalianChef.make_chicken()
 print(myItalianChef.age);
-
-
-# I N T E R P R E T E R
-python3
-
