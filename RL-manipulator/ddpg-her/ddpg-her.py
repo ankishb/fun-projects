@@ -189,22 +189,26 @@ class OrnsteinUhlenbeckActionNoise:
 #########################################################################################################
 
 
-def store_sample(s,a,r,d,info ,s2):
-    ob_1 = np.reshape(s['observation'],(1,10))
+def store_sample(s, a, r, d, info, s2):
+    ob_1 = np.reshape(s['observation'],  (1,10))
     ac_1 = np.reshape(s['achieved_goal'],(1,3))
-    de_1 = np.reshape(s['desired_goal'],(1,3))
-    ob_2 = np.reshape(s2['observation'],(1,10))
+    de_1 = np.reshape(s['desired_goal'], (1,3))
+
+    s11 = np.concatenate([ob_1, ac_1], axis=1)
+    s12 = np.concatenate([ob_1, de_1], axis=1)
+
+    ob_2 = np.reshape(s2['observation'],  (1,10))
     ac_2 = np.reshape(s2['achieved_goal'],(1,3))
-    de_2 = np.reshape(s2['desired_goal'],(1,3))
-    s_1 = np.concatenate([ob_1,ac_1],axis=1)
-    s2_1 = np.concatenate([ob_2,ac_1],axis=1)
-    s_2 = np.concatenate([ob_1,de_1],axis=1)
-    s2_2 = np.concatenate([ob_2,de_1],axis=1)
+    de_2 = np.reshape(s2['desired_goal'], (1,3))
+
+    s21 = np.concatenate([ob_2, ac_1], axis=1)
+    s22 = np.concatenate([ob_2, de_1], axis=1)
+
     substitute_goal = s['achieved_goal'].copy()
     substitute_reward = env.compute_reward(s['achieved_goal'], substitute_goal, info)
 
-    replay_memory.append((s_2,a,r,d,s2_2))
-    replay_memory.append((s_1,a,substitute_reward,True,s2_1))
+    replay_memory.append((s12, a, r, d, s22))
+    replay_memory.append((s11, a, substitute_reward, True, s21))
 
 def stg(s):
     #print(len(s))
